@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "Crush — Self-Made Entrepreneurs"
+description = "An editorial blog for self-made entrepreneurs, with a public magazine-style reading experience and a secure admin studio for writing, editing, publishing, and removing stories."
+version = "1.0.0"
+id = "artifacts/crush-blog"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 20153
+
+[services.development]
+run = "pnpm --filter @workspace/crush-blog run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/crush-blog", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/crush-blog/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "20153"
+BASE_PATH = "/"

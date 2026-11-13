@@ -1,6 +1,6 @@
-# [Project name]
+# Crush — Self-Made Entrepreneurs
 
-_Replace the heading above with the project's name, and this line with one sentence describing what this app does for users._
+A public editorial blog with a secure admin studio for writing, editing, publishing, and deleting stories.
 
 ## Run & Operate
 
@@ -22,19 +22,27 @@ _Replace the heading above with the project's name, and this line with one sente
 
 ## Where things live
 
-_Populate as you build — short repo map plus pointers to the source-of-truth file for DB schema, API contracts, theme files, etc._
+- `artifacts/crush-blog/` — public magazine, article pages, Clerk sign-in, and editorial studio
+- `artifacts/api-server/src/routes/posts.ts` — public article API and admin post management
+- `lib/db/src/schema/blog-posts.ts` — persistent blog post schema
+- `lib/api-spec/openapi.yaml` — source of truth for the post API and generated client hooks
 
 ## Architecture decisions
 
-_Populate as you build — non-obvious choices a reader couldn't infer from the code (3-5 bullets)._
+- Clerk handles authentication; admin access is checked server-side against the verified primary email.
+- Blog body HTML is sanitized by the API before saving and rendered only from that sanitized content.
+- Post data is persisted in PostgreSQL; drafts are never returned from public post endpoints.
 
 ## Product
 
-_Describe the high-level user-facing capabilities of this app once they exist._
+- Visitors can browse published entrepreneur stories and read full articles.
+- The editor can create, save drafts, publish, edit, feature, search, filter, and delete posts.
+- The article editor provides Word-like rich text formatting through TipTap.
 
 ## User preferences
 
-_Populate as you build — explicit user instructions worth remembering across sessions._
+- Keep the editorial direction close to the supplied Crush reference page.
+- The admin account is `malikhkm123@gmail.com`; never store a password in app code.
 
 ## Gotchas
 
